@@ -13,9 +13,9 @@ namespace FirestoneCardsRenderer
         public static bool USE_CARDS_DIFF = true;
         public static bool OVERRIDE_EXISTING_FILES = true;
         public static bool USE_LOCAL_CARDS = false;
-        public static bool USE_SAVE = true;
+        public static bool USE_SAVE = false;
 
-        public static string DESTINATION_ROOT_FOLDER = $"E:\\hearthstone_images\\{ReleaseConfig.PATCH_NUMBER}";
+        public static string DESTINATION_ROOT_FOLDER = $"D:\\hearthstone_images\\{ReleaseConfig.PATCH_NUMBER}";
 
         public static List<Locale> LOCALES = new List<Locale>() {
             Locale.enUS,
@@ -60,7 +60,7 @@ namespace FirestoneCardsRenderer
             //1033, 945
         };
 
-        public static ScreeshotSizes ScreeshotSizes = new NoisyLaptopScreenshotSizes();
+        public static ScreeshotSizes ScreeshotSizes = new FullScreen_1920_1080();
 
     }
 
@@ -79,6 +79,29 @@ namespace FirestoneCardsRenderer
         public int CardPackHeight { get; set; }
         public int CardPackStartX { get; set; }
         public int CardPackStartY { get; set; }
+    }
+
+    public class FullScreen_1920_1080 : ScreeshotSizes
+    {
+        private static int offsetX = 75;
+        private static int offsetY = 0;
+        private static int offsetWidth = 10;
+        private static int offsetHeight = 20;
+
+        public int CardWidth { get; set; } = 510; // 500 + offsetWidth;
+        public int CardHeight { get; set; } = 670; // 650 + offsetHeight;
+        public int CardStartX { get; set; } = 692; // 617 + offsetX;
+        public int CardStartY { get; set; } = 310; // 310 + offsetY;
+        public int CardHeroHeight { get; set; } = 470 + offsetHeight;
+        public int CardHeroStartY { get; set; } = 490 + offsetY;
+        public int CardBackWidth { get; set; } = 500 + offsetWidth;
+        public int CardBackHeight { get; set; } = 650 + offsetHeight;
+        public int CardBackStartX { get; set; } = 631 + offsetX;
+        public int CardBackStartY { get; set; } = 310 + offsetY;
+        public int CardPackWidth { get; set; } = 468 + offsetWidth;
+        public int CardPackHeight { get; set; } = 590 + offsetHeight;
+        public int CardPackStartX { get; set; } = 659 + offsetX;
+        public int CardPackStartY { get; set; } = 335 + offsetY;
     }
 
     public class NoisyLaptopScreenshotSizes : ScreeshotSizes
