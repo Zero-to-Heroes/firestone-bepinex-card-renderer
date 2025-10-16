@@ -1,0 +1,334 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <AssemblyName>com.firestoneapp.mods.bepinex.FirestoneCardsRenderer</AssemblyName>
+    <Product>Firestone Cards Renderer</Product>
+    <Version>1.0.0</Version>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <LangVersion>latest</LangVersion>
+    <RestoreAdditionalProjectSources>
+      https://api.nuget.org/v3/index.json;
+      https://nuget.bepinex.dev/v3/index.json;
+      https://nuget.samboy.dev/v3/index.json
+    </RestoreAdditionalProjectSources>
+    <RootNamespace>FirestoneCardsRenderer</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+    <HearthstoneManagedPath>..\..\..\..\..\Games\Hearthstone\Hearthstone_Data\Managed\</HearthstoneManagedPath>
+    <OutputPath>E:\Games\Hearthstone\BepInEx\plugins</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all" />
+    <PackageReference Include="BepInEx.Core" Version="5.*" />
+    <PackageReference Include="BepInEx.PluginInfoProps" Version="2.*" />
+    <PackageReference Include="UnityEngine.Modules" Version="2022.3.62" IncludeAssets="compile" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(HearthstoneManagedPath)Assembly-CSharp.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Assembly-CSharp-firstpass">
+      <HintPath>$(HearthstoneManagedPath)Assembly-CSharp-firstpass.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="blizzard.bgsclient">
+      <HintPath>$(HearthstoneManagedPath)blizzard.bgsclient.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="blizzard.bgssdk">
+      <HintPath>$(HearthstoneManagedPath)blizzard.bgssdk.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Blizzard.Commerce.Bindings">
+      <HintPath>$(HearthstoneManagedPath)Blizzard.Commerce.Bindings.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Blizzard.Commerce.Model.CSharp">
+      <HintPath>$(HearthstoneManagedPath)Blizzard.Commerce.Model.CSharp.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Blizzard.Commerce.Wrapper">
+      <HintPath>$(HearthstoneManagedPath)Blizzard.Commerce.Wrapper.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Blizzard.T5.AssetLoader">
+      <HintPath>$(HearthstoneManagedPath)Blizzard.T5.AssetLoader.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Blizzard.T5.AssetManager">
+      <HintPath>$(HearthstoneManagedPath)Blizzard.T5.AssetManager.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Blizzard.T5.Configuration">
+      <HintPath>$(HearthstoneManagedPath)Blizzard.T5.Configuration.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Blizzard.T5.Core">
+      <HintPath>$(HearthstoneManagedPath)Blizzard.T5.Core.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Blizzard.T5.ErrorInterface">
+      <HintPath>$(HearthstoneManagedPath)Blizzard.T5.ErrorInterface.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Blizzard.T5.FontService">
+      <HintPath>$(HearthstoneManagedPath)Blizzard.T5.FontService.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Blizzard.T5.FXBuilder">
+      <HintPath>$(HearthstoneManagedPath)Blizzard.T5.FXBuilder.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Blizzard.T5.Game">
+      <HintPath>$(HearthstoneManagedPath)Blizzard.T5.Game.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Blizzard.T5.GameStringsInterface">
+      <HintPath>$(HearthstoneManagedPath)Blizzard.T5.GameStringsInterface.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Blizzard.T5.GraphicsManagerInterface">
+      <HintPath>$(HearthstoneManagedPath)Blizzard.T5.GraphicsManagerInterface.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Blizzard.T5.iTween">
+      <HintPath>$(HearthstoneManagedPath)Blizzard.T5.iTween.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Blizzard.T5.JobQueue">
+      <HintPath>$(HearthstoneManagedPath)Blizzard.T5.JobQueue.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Blizzard.T5.Localization">
+      <HintPath>$(HearthstoneManagedPath)Blizzard.T5.Localization.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Blizzard.T5.Logging">
+      <HintPath>$(HearthstoneManagedPath)Blizzard.T5.Logging.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Blizzard.T5.MaterialService">
+      <HintPath>$(HearthstoneManagedPath)Blizzard.T5.MaterialService.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Blizzard.T5.MiniJSON">
+      <HintPath>$(HearthstoneManagedPath)Blizzard.T5.MiniJSON.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Blizzard.T5.Network-Core">
+      <HintPath>$(HearthstoneManagedPath)Blizzard.T5.Network-Core.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Blizzard.T5.PlayMaker.Runtime">
+      <HintPath>$(HearthstoneManagedPath)Blizzard.T5.PlayMaker.Runtime.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Blizzard.T5.PlayMakerCustomActions.Runtime">
+      <HintPath>$(HearthstoneManagedPath)Blizzard.T5.PlayMakerCustomActions.Runtime.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Blizzard.T5.ServiceLocator">
+      <HintPath>$(HearthstoneManagedPath)Blizzard.T5.ServiceLocator.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Blizzard.T5.UberText.Runtime">
+      <HintPath>$(HearthstoneManagedPath)Blizzard.T5.UberText.Runtime.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Blizzard.T5.UI.Core">
+      <HintPath>$(HearthstoneManagedPath)Blizzard.T5.UI.Core.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Blizzard.Telemetry.Identity">
+      <HintPath>$(HearthstoneManagedPath)Blizzard.Telemetry.Identity.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Blizzard.Telemetry.Sdk">
+      <HintPath>$(HearthstoneManagedPath)Blizzard.Telemetry.Sdk.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Blizzard.Telemetry.StandardProtos.BlizzPbc">
+      <HintPath>$(HearthstoneManagedPath)Blizzard.Telemetry.StandardProtos.BlizzPbc.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>$(HearthstoneManagedPath)Newtonsoft.Json.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="PlayMaker">
+      <HintPath>$(HearthstoneManagedPath)PlayMaker.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(HearthstoneManagedPath)UnityEngine.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AIModule">
+      <HintPath>$(HearthstoneManagedPath)UnityEngine.AIModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AndroidJNIModule">
+      <HintPath>$(HearthstoneManagedPath)UnityEngine.AndroidJNIModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>$(HearthstoneManagedPath)UnityEngine.AnimationModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AssetBundleModule">
+      <HintPath>$(HearthstoneManagedPath)UnityEngine.AssetBundleModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>$(HearthstoneManagedPath)UnityEngine.AudioModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(HearthstoneManagedPath)UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.DirectorModule">
+      <HintPath>$(HearthstoneManagedPath)UnityEngine.DirectorModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.GridModule">
+      <HintPath>$(HearthstoneManagedPath)UnityEngine.GridModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.Il2CppAssetBundleManager">
+      <HintPath>$(HearthstoneManagedPath)UnityEngine.Il2CppAssetBundleManager.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.Il2CppImageConversionManager">
+      <HintPath>$(HearthstoneManagedPath)UnityEngine.Il2CppImageConversionManager.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>$(HearthstoneManagedPath)UnityEngine.ImageConversionModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>$(HearthstoneManagedPath)UnityEngine.IMGUIModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>$(HearthstoneManagedPath)UnityEngine.InputLegacyModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.InputModule">
+      <HintPath>$(HearthstoneManagedPath)UnityEngine.InputModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.JSONSerializeModule">
+      <HintPath>$(HearthstoneManagedPath)UnityEngine.JSONSerializeModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ParticleSystemModule">
+      <HintPath>$(HearthstoneManagedPath)UnityEngine.ParticleSystemModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.Physics2DModule">
+      <HintPath>$(HearthstoneManagedPath)UnityEngine.Physics2DModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>$(HearthstoneManagedPath)UnityEngine.PhysicsModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.PropertiesModule">
+      <HintPath>$(HearthstoneManagedPath)UnityEngine.PropertiesModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.ScreenCaptureModule">
+      <HintPath>$(HearthstoneManagedPath)UnityEngine.ScreenCaptureModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.SharedInternalsModule">
+      <HintPath>$(HearthstoneManagedPath)UnityEngine.SharedInternalsModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteShapeModule">
+      <HintPath>$(HearthstoneManagedPath)UnityEngine.SpriteShapeModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.SubsystemsModule">
+      <HintPath>$(HearthstoneManagedPath)UnityEngine.SubsystemsModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainModule">
+      <HintPath>$(HearthstoneManagedPath)UnityEngine.TerrainModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TextCoreFontEngineModule">
+      <HintPath>$(HearthstoneManagedPath)UnityEngine.TextCoreFontEngineModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TextCoreTextEngineModule">
+      <HintPath>$(HearthstoneManagedPath)UnityEngine.TextCoreTextEngineModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>$(HearthstoneManagedPath)UnityEngine.TextRenderingModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TilemapModule">
+      <HintPath>$(HearthstoneManagedPath)UnityEngine.TilemapModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>$(HearthstoneManagedPath)UnityEngine.UI.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UIElementsModule">
+      <HintPath>$(HearthstoneManagedPath)UnityEngine.UIElementsModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>$(HearthstoneManagedPath)UnityEngine.UIModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityAnalyticsModule">
+      <HintPath>$(HearthstoneManagedPath)UnityEngine.UnityAnalyticsModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestModule">
+      <HintPath>$(HearthstoneManagedPath)UnityEngine.UnityWebRequestModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestTextureModule">
+      <HintPath>$(HearthstoneManagedPath)UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.VFXModule">
+      <HintPath>$(HearthstoneManagedPath)UnityEngine.VFXModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.VideoModule">
+      <HintPath>$(HearthstoneManagedPath)UnityEngine.VideoModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.VRModule">
+      <HintPath>$(HearthstoneManagedPath)UnityEngine.VRModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.WindModule">
+      <HintPath>$(HearthstoneManagedPath)UnityEngine.WindModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.XRModule">
+      <HintPath>$(HearthstoneManagedPath)UnityEngine.XRModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+</Project>
