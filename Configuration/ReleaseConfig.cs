@@ -57,7 +57,7 @@ namespace FirestoneCardsRenderer
 
         public static List<int> PACKS_TO_RENDER = new List<int>()
         {
-            //1033, 945
+            1056, 1055, 1045, 1044, 989, 982
         };
 
         public static ScreeshotSizes ScreeshotSizes = new FullScreen_1920_1080();
@@ -88,16 +88,19 @@ namespace FirestoneCardsRenderer
         private static int offsetWidth = 10;
         private static int offsetHeight = 20;
 
-        public int CardWidth { get; set; } = 510; // 500 + offsetWidth;
-        public int CardHeight { get; set; } = 670; // 650 + offsetHeight;
-        public int CardStartX { get; set; } = 692; // 617 + offsetX;
-        public int CardStartY { get; set; } = 310; // 310 + offsetY;
+        // Ok
+        public int CardWidth { get; set; } = 510;
+        public int CardHeight { get; set; } = 670;
+        public int CardStartX { get; set; } = 692;
+        public int CardStartY { get; set; } = 310;
+        // Not tested yet
         public int CardHeroHeight { get; set; } = 470 + offsetHeight;
         public int CardHeroStartY { get; set; } = 490 + offsetY;
         public int CardBackWidth { get; set; } = 500 + offsetWidth;
         public int CardBackHeight { get; set; } = 650 + offsetHeight;
         public int CardBackStartX { get; set; } = 631 + offsetX;
         public int CardBackStartY { get; set; } = 310 + offsetY;
+        // Ok as well
         public int CardPackWidth { get; set; } = 468 + offsetWidth;
         public int CardPackHeight { get; set; } = 590 + offsetHeight;
         public int CardPackStartX { get; set; } = 659 + offsetX;
