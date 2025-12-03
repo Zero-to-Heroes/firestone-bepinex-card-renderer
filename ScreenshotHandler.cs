@@ -42,7 +42,7 @@ namespace FirestoneCardsRenderer
                 Directory.CreateDirectory(destFolder);
             }
             SavePNGAsync(destPathRgb, encoded);
-            //yield return new WaitForSeconds(99999);
+            yield return new WaitForSeconds(99999);
 
             // 2. Apply white material (cached)
             ApplyWhiteMaterial(targetObject);

@@ -275,6 +275,22 @@ namespace FirestoneCardsRenderer
                     actor.ActivateSpellBirthState(SpellType.COIN_MANA_GEM);
                     yield return new WaitForSecondsRealtime(0.5f);
                 }
+                else if (entityDef.HasTag(GAME_TAG.BACON_TIMEWARPED))
+                {
+                    Spell techLevelManaGemSpell = actor.GetSpell(SpellType.TECH_LEVEL_MANA_GEM);
+                    if (techLevelManaGemSpell != null)
+                    {
+                        techLevelManaGemSpell.GetComponent<PlayMakerFSM>().FsmVariables.GetFsmInt("TechLevel").Value = actor.GetEntityDef().GetTechLevel();
+                        techLevelManaGemSpell.ActivateState(SpellStateType.BIRTH);
+                        RemoveLeftoverShadows(techLevelManaGemSpell.transform);
+                        yield return new WaitForSecondsRealtime(0.5f);
+                    }
+                    actor.m_costTextMesh.Text = Convert.ToString(actor.GetEntityDef().GetTag(GAME_TAG.COST));
+                    actor.EnableAlternateCostTextPosition(true);
+                    actor.UpdateManaGemOffset();
+                    actor.ActivateSpellBirthState(SpellType.COST_ALT_TAVERN_COIN);
+                    yield return new WaitForSecondsRealtime(0.5f);
+                }
                 else if (entityDef.IsMinion())
                 {
                     Spell techLevelManaGemSpell = actor.GetSpell(SpellType.TECH_LEVEL_MANA_GEM);

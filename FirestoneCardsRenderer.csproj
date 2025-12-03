@@ -17,8 +17,8 @@
 
   <PropertyGroup>
     <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
-    <HearthstoneManagedPath>D:\Games\Hearthstone\Hearthstone_Data\Managed\</HearthstoneManagedPath>
-    <OutputPath>D:\Games\Hearthstone\BepInEx\plugins</OutputPath>
+    <HearthstoneManagedPath>E:\Games\Hearthstone\Hearthstone_Data\Managed\</HearthstoneManagedPath>
+    <OutputPath>E:\Games\Hearthstone\BepInEx\plugins</OutputPath>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
 

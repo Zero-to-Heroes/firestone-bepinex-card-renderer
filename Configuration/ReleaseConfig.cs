@@ -7,37 +7,37 @@ namespace FirestoneCardsRenderer
 {
     public class ReleaseConfig 
     {
-        public static long PATCH_NUMBER = 231720;
+        public static long PATCH_NUMBER = 20251203;
 
         // Cards config
-        public static bool USE_CARDS_DIFF = true;
+        public static bool USE_CARDS_DIFF = false;
         public static bool OVERRIDE_EXISTING_FILES = true;
-        public static bool USE_LOCAL_CARDS = false;
-        public static bool USE_SAVE = true;
+        public static bool USE_LOCAL_CARDS = true;
+        public static bool USE_SAVE = false;
 
-        public static string DESTINATION_ROOT_FOLDER = $"D:\\hearthstone_images\\{ReleaseConfig.PATCH_NUMBER}";
+        public static string DESTINATION_ROOT_FOLDER = $"E:\\hearthstone_images\\{ReleaseConfig.PATCH_NUMBER}";
 
         public static List<Locale> LOCALES = new List<Locale>() {
             Locale.enUS,
-            Locale.frFR,
-            Locale.jaJP,
-            Locale.deDE,
-            Locale.zhCN,
-            Locale.zhTW,
-            Locale.ruRU,
-            Locale.itIT,
-            Locale.esES,
-            Locale.plPL,
-            Locale.ptBR,
-            Locale.thTH,
-            Locale.koKR,
-            Locale.esMX,
+            //Locale.frFR,
+            //Locale.jaJP,
+            //Locale.deDE,
+            //Locale.zhCN,
+            //Locale.zhTW,
+            //Locale.ruRU,
+            //Locale.itIT,
+            //Locale.esES,
+            //Locale.plPL,
+            //Locale.ptBR,
+            //Locale.thTH,
+            //Locale.koKR,
+            //Locale.esMX,
         };
         public static List<TAG_PREMIUM> PREMIUM_TAGS_TO_RENDER = new List<TAG_PREMIUM>() {
             TAG_PREMIUM.NORMAL,
-            TAG_PREMIUM.GOLDEN,
-            TAG_PREMIUM.DIAMOND,
-            TAG_PREMIUM.SIGNATURE,
+            //TAG_PREMIUM.GOLDEN,
+            //TAG_PREMIUM.DIAMOND,
+            //TAG_PREMIUM.SIGNATURE,
         };
         public static List<Predicate<ReferenceCard>> CARD_PREDICATES = new List<Predicate<ReferenceCard>>()
         {
@@ -52,7 +52,7 @@ namespace FirestoneCardsRenderer
         };
         public static List<string> CARD_IDS_TO_CLEAR = new List<string>()
         {
-
+            "BG34_Treasure_902"
         };
 
         public static List<int> PACKS_TO_RENDER = new List<int>()
