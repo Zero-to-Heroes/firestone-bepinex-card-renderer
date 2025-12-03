@@ -52,7 +52,7 @@ namespace FirestoneCardsRenderer
         };
         public static List<string> CARD_IDS_TO_CLEAR = new List<string>()
         {
-            "BG34_Treasure_902"
+            "BG34_Treasure_902", "BG34_Treasure_903", "BGS_104"
         };
 
         public static List<int> PACKS_TO_RENDER = new List<int>()

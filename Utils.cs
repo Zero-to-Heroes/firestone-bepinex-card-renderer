@@ -151,7 +151,7 @@ namespace FirestoneCardsRenderer
             }
         }
 
-        private static void LogTexturesForComponent(Component component, int indent)
+        public static void LogTexturesForComponent(Component component, int indent)
         {
             if (component == null) return;
 

@@ -290,6 +290,18 @@ namespace FirestoneCardsRenderer
                     actor.UpdateManaGemOffset();
                     actor.ActivateSpellBirthState(SpellType.COST_ALT_TAVERN_COIN);
                     yield return new WaitForSecondsRealtime(0.5f);
+                    //var shield = actor.m_tierShieldObject;
+                    //RendererPlugin.Logger.LogInfo($"shield {shield != null} {shield}");
+                    //RendererPlugin.Logger.LogInfo($"shield material {shield?.GetComponent<Renderer>()?.material}");
+                    //RendererPlugin.Logger.LogInfo($"actor textures");
+                    //Utils.LogTexturesForComponent(actor, 0);
+                    //RendererPlugin.Logger.LogInfo($"shield textures"); 
+                    //Component[] components = shield?.transform.GetComponents(typeof(Component)) ?? [];
+                    //foreach (Component component in components)
+                    //{
+                    //    RendererPlugin.Logger.LogInfo($"shield component {component}"); 
+                    //    Utils.LogTexturesForComponent(component, 0);
+                    //}
                 }
                 else if (entityDef.IsMinion())
                 {
