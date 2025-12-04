@@ -689,6 +689,7 @@ public class ReferenceCard
     public bool? availableAsDiamond;
     public bool? availableAsSignature;
     public AdditionalCosts additionalCosts;
+    public List<string> mechanics;
 }
 [Serializable]
 public class AdditionalCosts
