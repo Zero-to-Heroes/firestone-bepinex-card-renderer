@@ -149,7 +149,7 @@ namespace FirestoneCardsRenderer
                 yield return new WaitForEndOfFrame();
 
             // ── Step 3: Capture animation frames ──
-            var dir = $"{ReleaseConfig.DESTINATION_ROOT_FOLDER}\\card_backs_animated";
+            var dir = $"{ReleaseConfig.DESTINATION_ROOT_FOLDER}\\card_backs_animated\\512";
             yield return StartCoroutine(screenshotHandler.CaptureAnimationFrames(
                 destFolder: dir,
                 fileName: $"{m_cardBackId}.webm",
