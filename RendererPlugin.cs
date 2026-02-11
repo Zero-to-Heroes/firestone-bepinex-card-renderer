@@ -1,4 +1,4 @@
-﻿using BepInEx;
+using BepInEx;
 using BepInEx.Logging;
 using UnityEngine.SceneManagement;
 using UnityEngine;
@@ -72,6 +72,11 @@ public class RendererPlugin : BaseUnityPlugin
         {
             var component = base.gameObject.AddComponent<PackRenderer>();
             StartCoroutine(component.BuildPackScreenshots());
+        }
+        if (Input.GetKeyDown(KeyCode.F9))
+        {
+            var component = base.gameObject.AddComponent<CardBackRenderer>();
+            StartCoroutine(component.BuildCardBackAnimations());
         }
 
         if (Input.GetKeyDown(KeyCode.F2))

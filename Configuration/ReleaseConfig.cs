@@ -1,4 +1,4 @@
-﻿using HutongGames.PlayMaker.Actions;
+using HutongGames.PlayMaker.Actions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +16,7 @@ namespace FirestoneCardsRenderer
         public static bool USE_LOCAL_CARDS = false;
         public static bool USE_SAVE = false;
 
-        public static string DESTINATION_ROOT_FOLDER = $"D:\\hearthstone_images\\{ReleaseConfig.PATCH_NUMBER}";
+        public static string DESTINATION_ROOT_FOLDER = $"E:\\hearthstone_images\\{ReleaseConfig.PATCH_NUMBER}";
 
         public static List<Locale> LOCALES = new List<Locale>() {
             Locale.enUS,
@@ -60,6 +60,13 @@ namespace FirestoneCardsRenderer
         {
             1056, 1055, 1045, 1044, 989, 982
         };
+
+        // Animation capture config
+        public static string FFMPEG_PATH = @"C:\ffmpeg\bin\ffmpeg.exe";
+        public static int ANIMATION_FPS = 30;
+        public static int ANIMATION_FRAME_COUNT = 90;       // 3 seconds at 30fps
+        public static int ANIMATION_OVERLAP_FRAMES = 15;    // 0.5 seconds cross-fade for seamless looping
+        public static int ANIMATION_WARMUP_FRAMES = 30;     // 1 second warm-up for particles/shaders
 
         public static ScreeshotSizes ScreeshotSizes = new DynamicScreenshotSizes();
 
