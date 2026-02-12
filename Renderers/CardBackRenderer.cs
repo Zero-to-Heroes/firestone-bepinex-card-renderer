@@ -15,9 +15,12 @@ namespace FirestoneCardsRenderer
         private static string CARD_BACK_REF_FILE = "https://raw.githubusercontent.com/Zero-to-Heroes/hs-reference-data/master/src/card-backs.json";
         //private static string CARD_BACK_REF_FILE = "https://raw.githubusercontent.com/Zero-to-Heroes/hs-reference-data/master/src/card-backs-diff.json";
 
+        private static float LOAD_TIMEOUT_SECONDS = 10f;
+
         private int m_cardBackId;
         private GameObject m_cardBackGo;
         private bool m_loadComplete;
+        private bool m_loadFailed;
 
         // ──────────────────────────────────────────────────────────────
         // Static screenshot capture (existing functionality)
@@ -123,8 +126,14 @@ namespace FirestoneCardsRenderer
 
             // ── Step 1: Load card back and capture alpha mask ──
             // This instance's materials will be destroyed by the white material pass.
+            bool loadedOk = false;
             LoadCardBack(m_cardBackId);
-            while (!m_loadComplete) yield return null;
+            yield return StartCoroutine(WaitForLoad((ok) => loadedOk = ok));
+            if (!loadedOk)
+            {
+                RendererPlugin.Logger.LogInfo($"\tSkipping card back {m_cardBackId} (failed to load for alpha mask)");
+                yield break;
+            }
 
             yield return StartCoroutine(screenshotHandler.CaptureAlphaMask(
                 m_cardBackGo, cbStartX, cbStartY, cbWidth, cbHeight));
@@ -137,7 +146,17 @@ namespace FirestoneCardsRenderer
 
             // ── Step 2: Load a fresh card back for animation capture ──
             LoadCardBack(m_cardBackId);
-            while (!m_loadComplete) yield return null;
+            yield return StartCoroutine(WaitForLoad((ok) => loadedOk = ok));
+            if (!loadedOk)
+            {
+                RendererPlugin.Logger.LogInfo($"\tSkipping card back {m_cardBackId} (failed to load for animation)");
+                if (alphaMask != null)
+                {
+                    DestroyImmediate(alphaMask);
+                    screenshotHandler.LastAlphaMask = null;
+                }
+                yield break;
+            }
 
             // Enable time so shader animations play
             Time.timeScale = 1f;
@@ -194,11 +213,52 @@ namespace FirestoneCardsRenderer
         private void LoadCardBack(int cardBackId)
         {
             m_loadComplete = false;
-            CardBackManager.Get().LoadCardBackByIndex(cardBackId, delegate (CardBackManager.LoadCardBackData cardBackData)
+            m_loadFailed = false;
+            try
             {
-                SetupCardBackGameObject(cardBackData);
-                m_loadComplete = true;
-            }, true);
+                CardBackManager.Get().LoadCardBackByIndex(cardBackId, delegate (CardBackManager.LoadCardBackData cardBackData)
+                {
+                    try
+                    {
+                        SetupCardBackGameObject(cardBackData);
+                        m_loadComplete = true;
+                    }
+                    catch (Exception e)
+                    {
+                        RendererPlugin.Logger.LogInfo($"\t\tError in card back setup callback for {cardBackId}: {e}");
+                        m_loadFailed = true;
+                    }
+                }, true);
+            }
+            catch (Exception e)
+            {
+                RendererPlugin.Logger.LogInfo($"\t\tError loading card back {cardBackId}: {e}");
+                m_loadFailed = true;
+            }
+        }
+
+        /// <summary>
+        /// Waits for the load callback with a timeout. Returns true if loaded successfully, false on failure/timeout.
+        /// </summary>
+        private IEnumerator WaitForLoad(System.Action<bool> result)
+        {
+            float elapsed = 0f;
+            while (!m_loadComplete && !m_loadFailed && elapsed < LOAD_TIMEOUT_SECONDS)
+            {
+                yield return null;
+                elapsed += Time.unscaledDeltaTime;
+            }
+
+            if (m_loadComplete)
+            {
+                result(true);
+            }
+            else
+            {
+                if (!m_loadFailed)
+                    RendererPlugin.Logger.LogInfo($"\t\tLoad timed out after {LOAD_TIMEOUT_SECONDS}s for card back {m_cardBackId}");
+                result(false);
+            }
         }
 
         /// <summary>
