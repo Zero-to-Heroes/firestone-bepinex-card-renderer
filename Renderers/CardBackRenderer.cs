@@ -39,6 +39,10 @@ namespace FirestoneCardsRenderer
                 RendererPlugin.Logger.LogInfo($"\tParsed card backs {refCardBacks.Count}");
                 foreach (var cardBack in refCardBacks)
                 {
+                    if (ReleaseConfig.CARD_BACKS_TO_RENDER.Count > 0 && !ReleaseConfig.CARD_BACKS_TO_RENDER.Contains(cardBack.id))
+                    {
+                        continue;
+                    }
                     m_cardBackId = cardBack.id;
                     yield return StartCoroutine(BuildCardBackScreenshotCoroutine());
                 }
@@ -97,6 +101,10 @@ namespace FirestoneCardsRenderer
                 RendererPlugin.Logger.LogInfo($"\tParsed card backs {refCardBacks.Count}");
                 foreach (var cardBack in refCardBacks)
                 {
+                    if (ReleaseConfig.CARD_BACKS_TO_RENDER.Count > 0 && !ReleaseConfig.CARD_BACKS_TO_RENDER.Contains(cardBack.id))
+                    {
+                        continue;
+                    }
                     m_cardBackId = cardBack.id;
                     yield return StartCoroutine(BuildCardBackAnimationCoroutine());
                 }

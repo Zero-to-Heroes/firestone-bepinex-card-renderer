@@ -36,7 +36,7 @@ namespace FirestoneCardsRenderer
                     yield return null;
                 }
                 json = File.ReadAllText(txtPath);
-                RendererPlugin.Logger.LogInfo($"Read local file");
+                RendererPlugin.Logger.LogInfo($"Read local file {json.Length}");
             }
 
             int currentId = 0;
@@ -52,9 +52,9 @@ namespace FirestoneCardsRenderer
                         : ("https://static.firestoneapp.com/data/cards/cards_enUS.gz.json?v=" + ReleaseConfig.PATCH_NUMBER);
                     RendererPlugin.Logger.LogInfo($"Calling json download from {refFile}");
                     json = wc.DownloadString(refFile);
+                    RendererPlugin.Logger.LogInfo($"Downloaded json {json?.Length}");
                 }
 
-                RendererPlugin.Logger.LogInfo($"Downloaded json {json?.Length}");
                 try
                 {
                     var refJson2 = JsonConvert.DeserializeObject<ReferenceCard[]>(json);
@@ -64,6 +64,7 @@ namespace FirestoneCardsRenderer
                 {
                     RendererPlugin.Logger.LogInfo($"Error deserialization {e}");
                 }
+
                 var refJson = JsonConvert.DeserializeObject<ReferenceCard[]>(json);
                 RendererPlugin.Logger.LogInfo($"Deserialized json");
                 var allCards = refJson
@@ -77,7 +78,8 @@ namespace FirestoneCardsRenderer
                     .Where(c => ReleaseConfig.CARD_PREDICATES.All(p => p.Invoke(c)))
                     .ToList();
                 RendererPlugin.Logger.LogInfo($"Parsed cards {referenceCards.Count} / {allCards.Count}");
-                RendererPlugin.Logger.LogInfo($"Sample {JsonConvert.SerializeObject(refJson.ToList().Find(c => c.id == "WW_010"))}");
+                RendererPlugin.Logger.LogInfo($"Sample {JsonConvert.SerializeObject(refJson.ToList().Find(c => c.id == "CATA_432"))}");
+                RendererPlugin.Logger.LogInfo($"Sample {JsonConvert.SerializeObject(referenceCards.ToList().Find(c => c.id == "CATA_432"))}");
 
                 if (referenceCards.Count == 0)
                 {
