@@ -9,15 +9,15 @@ namespace FirestoneCardsRenderer
 {
     public class ReleaseConfig 
     {
-        public static long PATCH_NUMBER = 1166;
+        public static long PATCH_NUMBER = 20260611;
 
         // Cards config
-        public static bool USE_CARDS_DIFF = false;
+        public static bool USE_CARDS_DIFF = true;
         public static bool OVERRIDE_EXISTING_FILES = true;
         public static bool USE_LOCAL_CARDS = false;
         public static bool USE_SAVE = true;
 
-        public static string DESTINATION_ROOT_FOLDER = $"E:\\hearthstone_images\\{ReleaseConfig.PATCH_NUMBER}";
+        public static string DESTINATION_ROOT_FOLDER = $"D:\\hearthstone_images\\{ReleaseConfig.PATCH_NUMBER}";
 
         public static List<Locale> LOCALES = new List<Locale>() {
             Locale.enUS,
@@ -36,18 +36,19 @@ namespace FirestoneCardsRenderer
             Locale.esMX,
         };
         public static List<TAG_PREMIUM> PREMIUM_TAGS_TO_RENDER = new List<TAG_PREMIUM>() {
-            //TAG_PREMIUM.NORMAL,
-            //TAG_PREMIUM.GOLDEN,
-            //TAG_PREMIUM.DIAMOND,
+            TAG_PREMIUM.NORMAL,
+            TAG_PREMIUM.GOLDEN,
+            TAG_PREMIUM.DIAMOND,
             TAG_PREMIUM.SIGNATURE,
         };
         public static List<Predicate<ReferenceCard>> CARD_PREDICATES = new List<Predicate<ReferenceCard>>()
         {
-            (ReferenceCard card) => (card.availableAsSignature == true)
+            //(ReferenceCard card) => (card.set == "Gift")
         };
+
         public static List<string> CARD_IDS_TO_CLEAR = new List<string>()
         {
-            //"CATA_432"
+            //"CORE_EDR_004", "CORE_EDR_004_2026"
         };
 
         public static List<int> PACKS_TO_RENDER = new List<int>()
@@ -75,7 +76,7 @@ namespace FirestoneCardsRenderer
         public int CardWidth { get; set; }
         public int CardHeight { get; set; }
         public int CardHeroHeight { get; set; }
-        public int CardStartX { get; set; }
+        public int CardStartX { get; set;  }
         public int CardStartY { get; set; }
         public int CardHeroStartY { get; set; }
         public int CardBackWidth { get; set; }

@@ -35,6 +35,7 @@ namespace FirestoneCardsRenderer
             int[] targetWidths,
             int x, int y, int width, int height)
         {
+            RendererPlugin.Logger.LogInfo($"\t capturing screenshot");
             yield return new WaitForEndOfFrame();
 
             // 1. Capture RGB image

@@ -22,6 +22,7 @@ namespace FirestoneCardsRenderer
 
         public IEnumerator BuildCardScreenshots()
         {
+            RendererPlugin.Logger.LogInfo($"Rendering cards");
             yield return new WaitForSecondsRealtime(2);
             var premiums = ReleaseConfig.PREMIUM_TAGS_TO_RENDER;
             var locales = ReleaseConfig.LOCALES;
@@ -40,6 +41,7 @@ namespace FirestoneCardsRenderer
             }
 
             int currentId = 0;
+            RendererPlugin.Logger.LogInfo($"Reading last processed id");
             int lastProcessedId = ReadLastProcessedId();
             RendererPlugin.Logger.LogInfo($"Read last processed id {lastProcessedId}");
 
@@ -48,7 +50,8 @@ namespace FirestoneCardsRenderer
                 if (json == null)
                 {
                     var refFile = ReleaseConfig.USE_CARDS_DIFF
-                        ? "https://raw.githubusercontent.com/Zero-to-Heroes/hs-reference-data/master/src/cards-diff-short.json"
+                        //? "https://raw.githubusercontent.com/Zero-to-Heroes/hs-reference-data/master/src/cards-diff-short.json"
+                        ? "https://raw.githubusercontent.com/Zero-to-Heroes/hs-reference-data/refs/heads/master/src/cards-diff-short.json"
                         : ("https://static.firestoneapp.com/data/cards/cards_enUS.gz.json?v=" + ReleaseConfig.PATCH_NUMBER);
                     RendererPlugin.Logger.LogInfo($"Calling json download from {refFile}");
                     json = wc.DownloadString(refFile);
@@ -76,10 +79,11 @@ namespace FirestoneCardsRenderer
                     .Where(c => c.set != "Lettuce")
                     .Where(o => ReleaseConfig.CARD_IDS_TO_CLEAR.Count == 0 || ReleaseConfig.CARD_IDS_TO_CLEAR.Contains(o.id))
                     .Where(c => ReleaseConfig.CARD_PREDICATES.All(p => p.Invoke(c)))
+                    .Where(c => c.id != "MIXED_CONCOCTION_UNKNOWN")
                     .ToList();
                 RendererPlugin.Logger.LogInfo($"Parsed cards {referenceCards.Count} / {allCards.Count}");
-                RendererPlugin.Logger.LogInfo($"Sample {JsonConvert.SerializeObject(refJson.ToList().Find(c => c.id == "CATA_432"))}");
-                RendererPlugin.Logger.LogInfo($"Sample {JsonConvert.SerializeObject(referenceCards.ToList().Find(c => c.id == "CATA_432"))}");
+                RendererPlugin.Logger.LogInfo($"Sample {JsonConvert.SerializeObject(refJson.ToList().Find(c => c.id == "CATA_EVENT_110"))}");
+                RendererPlugin.Logger.LogInfo($"Sample {JsonConvert.SerializeObject(referenceCards.ToList().Find(c => c.id == "CATA_EVENT_110"))}");
 
                 if (referenceCards.Count == 0)
                 {
@@ -400,7 +404,6 @@ namespace FirestoneCardsRenderer
                 RendererPlugin.Logger.LogInfo($"\t\tError while processing OnActorUpdated {e.Message} {e.StackTrace}");
             }
 
-            //RendererPlugin.Logger.LogInfo($"\t\tUpdateActor over");
             yield break;
         }
 
