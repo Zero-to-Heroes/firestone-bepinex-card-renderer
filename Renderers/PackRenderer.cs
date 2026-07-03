@@ -30,6 +30,10 @@ namespace FirestoneCardsRenderer
                     .Where(id => ReleaseConfig.PACKS_TO_RENDER.Count == 0 || ReleaseConfig.PACKS_TO_RENDER.Contains(id))
                     .Reverse()
                     .ToList();
+                if (ReleaseConfig.NUMBER_OF_CARD_PACKS_TO_RENDER > 0)
+                {
+                    refPacks = refPacks.GetRange(0, ReleaseConfig.NUMBER_OF_CARD_PACKS_TO_RENDER);
+                }
                 RendererPlugin.Logger.LogInfo($"\tpack IDs {string.Join(", ", refPacks)}");
                 //var refPacks = new List<int>() { 922, 894 };
                 RendererPlugin.Logger.LogInfo($"\tParsed card packs {refPacks.Count}");

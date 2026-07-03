@@ -46,6 +46,7 @@ public class RendererPlugin : BaseUnityPlugin
 
         if (Input.GetKeyDown(KeyCode.Delete))
         {
+            Logger.LogInfo($"Cleaning scene");
             Utils.CleanBaseScene();
 
             Vector3 pos = new Vector3(0, 50, 0);
@@ -78,6 +79,10 @@ public class RendererPlugin : BaseUnityPlugin
             var component = base.gameObject.AddComponent<CardBackRenderer>();
             StartCoroutine(component.BuildCardBackAnimations());
         }
+        if (Input.GetKeyDown(KeyCode.F8))
+        {
+            StartCoroutine(RunAllRenderersSequentially());
+        }
 
         if (Input.GetKeyDown(KeyCode.F2))
         {
@@ -104,5 +109,19 @@ public class RendererPlugin : BaseUnityPlugin
                 Logger.LogInfo($"GameObject for {obj} with parent {obj.transform.parent}");
             }
         }
+    }
+
+    private System.Collections.IEnumerator RunAllRenderersSequentially()
+    {
+        var cardBackRenderer = gameObject.AddComponent<CardBackRenderer>();
+        var packRenderer = gameObject.AddComponent<PackRenderer>();
+
+        Logger.LogInfo("F8: Step 1/3 - Rendering card backs...");
+        yield return StartCoroutine(cardBackRenderer.BuildCardBackScreenshots());
+        Logger.LogInfo("F8: Card backs done. Step 2/3 - Rendering packs...");
+        yield return StartCoroutine(packRenderer.BuildPackScreenshots());
+        Logger.LogInfo("F8: Packs done. Step 3/3 - Rendering animated card backs...");
+        yield return StartCoroutine(cardBackRenderer.BuildCardBackAnimations());
+        Logger.LogInfo("F8: All rendering complete.");
     }
 }

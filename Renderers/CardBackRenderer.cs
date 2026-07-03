@@ -36,6 +36,10 @@ namespace FirestoneCardsRenderer
                 var refCardBacks = JsonConvert.DeserializeObject<CardBack[]>(json)
                     //.Reverse<CardBack>()
                     .ToList();
+                if (ReleaseConfig.NUMBER_OF_CARD_BACKS_TO_RENDER > 0)
+                {
+                    refCardBacks = refCardBacks.GetRange(0, ReleaseConfig.NUMBER_OF_CARD_BACKS_TO_RENDER);
+                }
                 RendererPlugin.Logger.LogInfo($"\tParsed card backs {refCardBacks.Count}");
                 foreach (var cardBack in refCardBacks)
                 {

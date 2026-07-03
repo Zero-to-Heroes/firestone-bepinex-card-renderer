@@ -9,15 +9,17 @@ namespace FirestoneCardsRenderer
 {
     public class ReleaseConfig 
     {
-        public static long PATCH_NUMBER = 20260611;
+        public static long PATCH_NUMBER = 245164;
 
         // Cards config
         public static bool USE_CARDS_DIFF = true;
         public static bool OVERRIDE_EXISTING_FILES = true;
         public static bool USE_LOCAL_CARDS = false;
         public static bool USE_SAVE = true;
+        public static int NUMBER_OF_CARD_BACKS_TO_RENDER = 10;
+        public static int NUMBER_OF_CARD_PACKS_TO_RENDER = 10;
 
-        public static string DESTINATION_ROOT_FOLDER = $"D:\\hearthstone_images\\{ReleaseConfig.PATCH_NUMBER}";
+        public static string DESTINATION_ROOT_FOLDER = $"E:\\hearthstone_images\\{ReleaseConfig.PATCH_NUMBER}";
 
         public static List<Locale> LOCALES = new List<Locale>() {
             Locale.enUS,
