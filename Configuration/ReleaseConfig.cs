@@ -9,15 +9,15 @@ namespace FirestoneCardsRenderer
 {
     public class ReleaseConfig 
     {
-        public static long PATCH_NUMBER = 245164;
+        public static long PATCH_NUMBER = 247416;
 
         // Cards config
         public static bool USE_CARDS_DIFF = true;
         public static bool OVERRIDE_EXISTING_FILES = true;
         public static bool USE_LOCAL_CARDS = false;
-        public static bool USE_SAVE = true;
-        public static int NUMBER_OF_CARD_BACKS_TO_RENDER = 10;
-        public static int NUMBER_OF_CARD_PACKS_TO_RENDER = 10;
+        public static bool USE_SAVE = false;
+        public static int NUMBER_OF_CARD_BACKS_TO_RENDER = 30;
+        public static int NUMBER_OF_CARD_PACKS_TO_RENDER = 30;
 
         public static string DESTINATION_ROOT_FOLDER = $"E:\\hearthstone_images\\{ReleaseConfig.PATCH_NUMBER}";
 
@@ -50,7 +50,9 @@ namespace FirestoneCardsRenderer
 
         public static List<string> CARD_IDS_TO_CLEAR = new List<string>()
         {
-            //"CORE_EDR_004", "CORE_EDR_004_2026"
+            //"CATA_EVENT_110t6t",
+            //"CATA_EVENT_110t7",
+            //"CATA_210t",
         };
 
         public static List<int> PACKS_TO_RENDER = new List<int>()

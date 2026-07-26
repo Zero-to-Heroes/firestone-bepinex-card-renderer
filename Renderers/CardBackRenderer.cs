@@ -34,7 +34,7 @@ namespace FirestoneCardsRenderer
                 var json = wc.DownloadString(CARD_BACK_REF_FILE);
                 RendererPlugin.Logger.LogInfo($"\tDownloaded json {json.Length}");
                 var refCardBacks = JsonConvert.DeserializeObject<CardBack[]>(json)
-                    //.Reverse<CardBack>()
+                    //.Reverse<CardBack>() 
                     .ToList();
                 if (ReleaseConfig.NUMBER_OF_CARD_BACKS_TO_RENDER > 0)
                 {

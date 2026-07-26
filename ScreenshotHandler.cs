@@ -45,7 +45,7 @@ namespace FirestoneCardsRenderer
             rgbImage.Apply();
             var encoded = rgbImage.EncodeToPNG();
             if (!Directory.Exists(destFolder))
-            {
+            { 
                 Directory.CreateDirectory(destFolder);
             }
             SavePNGAsync(destPathRgb, encoded);
@@ -99,6 +99,7 @@ namespace FirestoneCardsRenderer
                     {
                         Directory.CreateDirectory(targetDir);
                     }
+                    RendererPlugin.Logger.LogInfo($"\t\t\tSaving screenshot to {destPath}");
                     SavePNGAsync(destPath, scaledImage.EncodeToPNG());
                     DestroyImmediate(scaledImage);
                     scaledImage = null; // PATCH: Null out reference

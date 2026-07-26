@@ -74,6 +74,7 @@ namespace FirestoneCardsRenderer
 
             RendererPlugin.Logger.LogInfo($"\t\tBuilding 512x screenshot {m_packGo.layer}");
             var dir = $"{ReleaseConfig.DESTINATION_ROOT_FOLDER}\\card_packs";
+            RendererPlugin.Logger.LogInfo($"\t\tSaving pack to {dir}");
             yield return StartCoroutine(GetComponent<ScreenshotHandler>().CaptureScreenshot(
                 targetObject: m_packGo,
                 destFolder: dir,
